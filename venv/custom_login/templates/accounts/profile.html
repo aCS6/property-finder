@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block index_page %}
+
+{% for i in info2 %}
+
+
+
+<div class="row mt-5">
+    <div class="col-md-3 text-center">
+        {% if i.profile_pic %}
+        <img src="/media/{{i.profile_pic}}" alt="" style="height: 200px; width: 200px;">
+        {% else %}
+        <img src="/media/demo/default-avatar.png" alt="" style="height: 200px; width: 200px;">
+        {% endif %}
+        <a href="{% url 'accounts:image-change' %}" class="btn btn-primary btn-md mt-1 p-1 w-100"> <b>Change Profile
+                Picture</b> </a>
+        <a href="{% url 'accounts:change_general_info' %}" class="btn btn-info btn-md mt-1 p-1 w-100"><b>Change General
+                Info</b></a>
+        <a href="{% url 'accounts:pass-change' %}" class="btn btn-secondary btn-md mt-1 p-1 w-100"><b>Change
+                Password</b></a>
+    </div>
+    <div class="col-md-9">
+        <div class="row mb-1">
+            <div class="col-md-1"><b>Name</b></div>
+            <div class="col-md-1">:</div>
+            <div class="col-md 10">
+                {{info1.first_name|title}} {{info1.last_name|title}}
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-md-1"><b>Email</b></div>
+            <div class="col-md-1">:</div>
+            <div class="col-md 10 text-primary">
+                {{info1.email}}
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-md-1"><b>Phone</b></div>
+            <div class="col-md-1">:</div>
+            <div class="col-md 10">
+                <i>
+                {% if i.phone_number1 %}
+                {{i.phone_number1}}
+                {% endif %}
+                </i>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-md-1"><b>Mobile</b></div>
+            <div class="col-md-1">:</div>
+            <div class="col-md 10">
+                <i>
+                {% if i.phone_number2 %}
+                {{i.phone_number2}}
+                {% endif %}
+            </i>
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-md-1"><b>About</b></div>
+            <div class="col-md-1">:</div>
+            <div class="col-md 10 text-justify">
+                {% if i.about_me %}
+                {{i.about_me}}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-md-5"><b>Total Property : {{total_property}}</b></div>
+            <div class="col-md-5"><b>Total Blog : {{total_blog}}</b></div>
+        </div>
+    </div>
+</div>
+</div>
+{% endfor %}
+
+{% endblock %}

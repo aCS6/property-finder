@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block index_page %}
+
+{% if msg %}
+<h3>{{msg}}</h3>
+{% else %}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Property Title</th>
+            <th scope="col">Sender Name</th>
+            <th scope="col">Sender Email</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in feedbacks %}
+
+        <tr>
+            <td><a href="{% url 'mainsite:single_property' i.property.pk %}" target="_blank">{{i.property.title}}</a>
+                </a></td>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.feedback_date|date:"M d, Y" }}</td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    View FeedBack
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">{{i.email}}</h5>
+                            </div>
+                            <div class="modal-body">
+                                {{i.comment}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}

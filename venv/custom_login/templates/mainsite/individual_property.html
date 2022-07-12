@@ -1,0 +1,130 @@
+{% extends 'mainsite/base.html' %}
+{% block title %} {% endblock %}
+{% block content %}
+
+
+<main id="main">
+{% if obj %}
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">{{obj.first_name|title}} {{obj.last_name|title}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Intro Single -->
+
+    <!-- ======= Agent Single ======= -->
+    <section class="agent-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="agent-avatar-box">
+                                <img src="/media/{{obj.user_extra.profile_pic}}" alt="" class="agent-avatar img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-md-5 section-md-t3">
+                            <div class="agent-info-box">
+                                <div class="agent-title">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">{{obj.first_name|title}}
+                                            <br> {{obj.last_name|title}}
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="agent-content mb-3">
+                                    <p class="content-d color-text-a" style="text-align: justify;" >
+                                        {{obj.user_extra.about_me}}
+                                    </p>
+                                    <div class="info-agents color-a">
+                                        <p>
+                                            <strong>Phone: </strong>
+                                            <span class="color-text-a">{{obj.user_extra.phone_number1}}</span>
+                                        </p>
+                                        <p>
+                                            <strong>Mobile: </strong>
+                                            <span class="color-text-a">{{obj.user_extra.phone_number2}}</span>
+                                        </p>
+                                        <p>
+                                            <strong>Email: </strong>
+                                            <span class="color-text-a">{{obj}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 section-t8">
+                        <div class="title-box-d">
+                            <h3 class="title-d">My Properties ({{obj.user_property.count}})</h3>
+                        </div>
+                    </div>
+                    <div class="row property-grid grid">
+
+                        {% for each in obj.user_property.all %}
+                        <div class="col-md-4">
+                            <div class="card-box-a card-shadow">
+                                <div class="img-box-a">
+                                    <img src="/media/{{each.image1}}" alt="" class="img-a img-fluid" style="height: 400px;width:100% ">
+                                </div>
+                                <div class="card-overlay">
+                                    <div class="card-overlay-a-content">
+                                        <div class="card-header-a">
+                                            <h2 class="card-title-a">
+                                                <a href="#">{{each.address}} {{each.city}}
+                                                    <br />{{each.title|title}}</a>
+                                            </h2>
+                                        </div>
+                                        <div class="card-body-a">
+                                            <div class="price-box d-flex">
+                                                <span class="price-a">{{each.status}} 
+                                                    {% if each.publish_price %}
+                                                        | TK {{ each.price }}
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                            <a href="{% url 'mainsite:single_property' each.id %}" class="link-a">Click here to view
+                                                <span class="bi bi-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                        <div class="card-footer-a">
+                                            <ul class="card-info d-flex justify-content-around">
+                                                <li>
+                                                    <h4 class="card-info-title">Area</h4>
+                                                    <span>{{each.area}}{{each.area_unit}}
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Beds</h4>
+                                                    <span>{{each.bedroom}}</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Baths</h4>
+                                                    <span>{{ each.bathroom }}</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Garages</h4>
+                                                    <span>{{each.garage}}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </section><!-- End Agent Single -->
+
+</main><!-- End #main -->
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4 class="card-title mt-3 text-center">
+    Registration Please
+</h4>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group ">
+        {{form.email}}
+    </div>
+    {% if form.email.errors %}
+    <div class="alert-danger">
+        <p>{{form.email.errors}}</p>
+    </div>
+    {% endif %}
+
+    <div class="form-group">
+        {{form.first_name}}
+    </div>
+    <div class="form-group">
+        {{form.last_name}}
+    </div>
+    <div class="form-group ">
+        {{form.password1}}
+    </div>
+
+    <div class="form-group">
+        {{form.password2}}
+    </div>
+
+    <div class="content">
+        {% if form.password2.errors %}
+        <div class="alert-danger">
+            {{form.password2.errors}}
+        </div>
+        {% endif %}
+        <ul class="help is-size-7 has-text-info" type="disc">
+            <li>Enter the same password</li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block btn-sm">
+            Create Account
+        </button>
+    </div>
+</form>
+
+<p class="text-center">
+    Have an account? <a href="{% url 'accounts:login' %}">Log In</a>
+</p>
+{% endblock %}

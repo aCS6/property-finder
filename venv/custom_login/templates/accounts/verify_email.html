@@ -1,0 +1,12 @@
+{% autoescape off %}
+HI {{first_name|title}} {{last_name|title}}
+
+Welcome to Real Estate
+Please Click on the link below to confirm your email.
+
+http://{{domain}}{% url 'accounts:email_activation' activation_key=activation_key %}
+
+Best,
+MR. X
+
+{% endautoescape %}

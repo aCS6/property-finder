@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block index_page %}
+<div class="text-right mt-2 mb-3">
+
+    <a href="{% url 'properties:add_properties' %}"  class="btn btn-md btn-info mr-2">Add Property</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Property Title</th>
+        <th scope="col">Property Type</th>
+        <th scope="col">Purpose</th>
+        <th scope="col">Listed ON</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for each in property %}
+      <tr>
+        {% if each.submitted_by == user %}
+        <td><a href="{% url 'mainsite:single_property' each.pk %}" target="_blank">{{each.title}}</a> 
+        <a href="{% url 'properties:feedback' each.pk %}" target="_blank">{{each.title}}</a></td>
+        <td>{{each.property_type}}</td>
+        <td>{{each.status}}</td>
+        <td>{{each.submission_date}}</td>
+        <td>
+            <a href="{% url 'properties:edit_properties' each.id %}" class="btn btn-md btn-primary mr-2">Edit</a>
+            <a href="{% url 'properties:delete_properties' each.id %}" class="btn btn-md btn-danger">Delete</a>
+        </td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+<!-- <table border="1">
+    
+
+    {% for each in property %}
+    <tr>
+        {% if each.submitted_by == user %}
+        <td>{{each.title}}</td>
+        <td>{{each.submitted_by.first_name|title}} {{ each.submitted_by.last_name|title }}</td>
+        <td></td>
+        <td></td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+</table> -->
+{% endblock %}

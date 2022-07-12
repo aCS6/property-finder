@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4 class="mt-3 text-center card-title">
+    Your Account is activated
+</h4>
+<p class="text-center">
+    Please  <a href="{% url 'accounts:login' %}"> Login </a>
+</p>
+
+{% endblock %}

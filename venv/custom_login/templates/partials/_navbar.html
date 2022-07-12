@@ -1,0 +1,88 @@
+
+<!-- ======= Header/Navbar ======= -->
+<nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+    <div class="container">
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="navbar-brand text-brand" href="{% url 'mainsite:index' %}">Estate<span class="color-b">Agency</span></a>
+
+      <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+        <ul class="navbar-nav">  
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buy</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Sell' type='Land'%}">Land</a>
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Sell' type='Apartment'%}">Apartment</a>
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Sell' type='Building'%}">Building</a>
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Sell' type='Shop'%}">Shop</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'accounts:login' %}" target="_blank">Sell</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Exchange</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Exchange' type='Land'%}">Land</a>
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Exchange' type='Apartment'%}">Apartment</a>
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Exchange' type='Building'%}">Building</a>
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Exchange' type='Shop'%}">Shop</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Share' type='Land'%}">Land</a>
+              
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rent</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Rent' type='Land'%}">Land</a>
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Rent' type='Apartment'%}">Apartment</a>
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Rent' type='Building'%}">Building</a>
+              <a class="dropdown-item " href="{% url 'mainsite:navbar' status='Rent' type='Shop'%}">Shop</a>
+            </div>
+          </li>
+
+          
+
+          
+          
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'mainsite:all_property' %}">All Property</a>
+          </li>
+          
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Also Visit</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item " href="#">Our Blogs</a>
+              <a class="dropdown-item " href="#">About Us</a>
+              <a class="dropdown-item " href="#">Contact Us</a>
+            </div>
+          </li> -->
+
+          {% if user.is_authenticated %}
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link " href="{% url 'accounts:login' %}" target="_blank">Login</a>
+            </li>
+          {% endif %}
+          
+        </ul> 
+      </div>
+
+      <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
+        <i class="bi bi-search"></i>
+      </button>
+
+    </div>
+  </nav><!-- End Header/Navbar -->

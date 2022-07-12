@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title_block %} Home {% endblock %}
+
+{% block content %}
+
+<div class="card-deck" style="margin-top: 10px;">
+    {% for i in obj %}
+    <div class="card" style="width: 18rem; margin-right: 5px;">
+        <img class="card-img-top" src="/media/{{i.blog_image}}" alt="Card image cap" width="200px" height="240px" >
+        <div class="card-body">
+          <h5 class="card-title bg-secondary text-white p-2">{{i}}</h5>
+          <p class="card-text" >{{i.blog_content|range_filter2|linebreaks}}</p>
+          <a href="{% url 'blog:blog_details' slug=i.slug %}" class="btn btn-primary">Details</a>
+        </div>
+      </div>
+    {% endfor%}
+    
+</div>
+
+{% endblock %}
